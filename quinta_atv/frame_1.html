@@ -1,0 +1,32 @@
+<form style="display: flex; flex-direction: column">
+  <label for="text">Text Area Frame 1:</label>
+  <textarea name="text" id="text_1" cols="20" rows="5"></textarea>
+
+  <button id="button_1" style="width: 100px; margin-top: 20px">
+    Enviar texto
+  </button>
+</form>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+    const frame_1 = parent.document.getElementById("frame_1").contentDocument;
+    const frame_2 = parent.document.getElementById("frame_2").contentDocument;
+
+    const button_frame_1 = frame_1.getElementById("button_1");
+    const button_frame_2 = frame_2.getElementById("button_2");
+
+    const text_frame_1 = frame_1.getElementById("text_1");
+    const text_frame_2 = frame_2.getElementById("text_2");
+
+    function changeText(text1, text2) {
+      text1.value = text2.value;
+    }
+
+    button_frame_1.onclick = (event) => {
+      changeText(text_frame_2, text_frame_1);
+    };
+    button_frame_2.onclick = function (event) {
+      changeText(text_frame_1, text_frame_2);
+    };
+  });
+</script>
